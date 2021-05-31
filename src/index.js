@@ -137,22 +137,25 @@ const listGames = (channel) => {
 const showGame = (id, channel) => {
     let game;
     if(!isNumeric(id) || id > games.table.length || id < 0){
-        console.log(id);
         channel.send("Syntax: !show <zahl>. Finde dein Spiel mit !list");
     }
     else{
-        game = findGame(id);
-        console.log(game);
-        channel.send(game);
+        console.log(findGame(id));
     }
     
 }
 
 const findGame = (id) => {
+    let gamename;
     games.table.forEach(game => {
         if(game.id == id){
-            console.log(game);
-            return game;
+            gamename = game.name;
+            console.log("Game found: " + gamename);
+            if(gamename == undefined) console.log("undefined gamename");
+            return gamename;
+        }
+        else{
+            return "No game";
         }
     })
 } 
