@@ -1,0 +1,19 @@
+{
+    "dependencies": {
+        "discord.js": "^12.5.3"
+    },
+    "prettier": {
+        "arrowParens": "avoid",
+        "bracketSpacing": true,
+        "jsxBracketSameLine": true,
+        "jsxSingleQuote": false,
+        "printWidth": 125,
+        "proseWrap": "preserve",
+        "requirePragma": false,
+        "tabWidth": 4,
+        "useTabs": false,
+        "singleQuote": true,
+        "trailingComma": "es5",
+        "semi": false
+    }
+}
