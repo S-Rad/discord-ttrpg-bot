@@ -146,19 +146,17 @@ const showGame = (id, channel) => {
 }
 
 const findGame = (id) => {
-    let gamename;
+    let foundgame = {};
     games.table.forEach(game => {
         if(game.id == id){
-            gamename = game.name;
-            console.log("Game found: " + gamename);
-            if(gamename == undefined) console.log("undefined gamename");
-            return gamename;
-        }
-        else{
-            return "No game";
+            //console.log("Game found: " + game);
+            foundgame = game;
+            if(game == undefined) console.log("undefined game");
         }
     })
-} 
+  return foundgame;
+}
+
 
 function isNumeric(str) {
     if (typeof str != "string") return false // we only process strings!  
