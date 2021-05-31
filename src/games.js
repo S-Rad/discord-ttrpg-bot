@@ -3,7 +3,7 @@ const fs = require('fs')
 const config = require('./config.json')
 
 const loadJSON = () => {
-    fs.readFile('games.json', 'utf8', function readFileCallback(err, data) {
+    fs.readFile('games.json', 'utf8', (err, data) => {
         if (err) {
             console.log('Error in loading: ' + err)
         } else {
@@ -71,20 +71,20 @@ const createGameObject = (args, author) => {
 
 const deleteGame = id => {}
 
-const listGames = channel => {
+const listGames = () => {
     let listString = ''
     games.table.forEach(game => {
         listString =
             listString + game.id + ', ' + game.name + ', ' + game.leiter + ', ' + game.system + ', ' + game.start + '\n'
         //message.channel.send(game.name + ", " + game.leiter + ", " + game.system + ", " + game.start);
     })
-    channel.send(listString)
+    return listString
 }
 
-const showGame = (id, channel) => {
+const showGame = id => {
     let game
     if (!isNumeric(id) || id > games.table.length || id < 0) {
-        channel.send('Syntax: !show <zahl>. Finde dein Spiel mit !list')
+        return 'Syntax: !show <zahl>. Finde dein Spiel mit !list'
     } else {
         console.log(findGame(id))
     }
@@ -102,7 +102,7 @@ const findGame = id => {
     return foundgame
 }
 
-function isNumeric(str) {
+const isNumeric = str => {
     if (typeof str != 'string') return false // we only process strings!
     return (
         !isNaN(str) && // use type coercion to parse the _entirety_ of the string (`parseFloat` alone does not do this)...
@@ -110,4 +110,4 @@ function isNumeric(str) {
     ) // ...and ensure strings of whitespace fail
 }
 
-module.exports = { loadJSON }
+module.exports = { loadJSON, resetGames, updateJSON, listGames, showGame, addGame }

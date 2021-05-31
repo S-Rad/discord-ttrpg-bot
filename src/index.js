@@ -3,7 +3,7 @@ const config = require('./config.json')
 const client = new Discord.Client()
 let games = { table: [] }
 const fs = require('fs')
-const { loadJSON } = require('./games.js')
+const { loadJSON, resetGames, updateJSON, listGames, showGame, addGame } = require('./games.js')
 
 client.once('ready', () => {
     loadJSON()
@@ -35,11 +35,11 @@ client.on('message', message => {
         }
 
         if (text.startsWith('list')) {
-            listGames(message.channel)
+            message.channel.send(listGames())
         }
 
         if (text.startsWith('show')) {
-            showGame(message.content.slice(6, message.content.length), message.channel)
+            message.channel.send(showGame(message.content.slice(6, message.content.length)))
         }
     }
 })
